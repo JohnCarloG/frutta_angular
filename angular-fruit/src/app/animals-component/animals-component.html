@@ -1,1 +1,10 @@
-<p>animals-component works!</p>
+    <div class="row">
+        @for (animale of animals; track animale) {
+        <div class="col box">
+            <p>{{animale.emoji}}</p>
+            <p class="text-info">{{animale.name}}</p>
+        </div>
+        }
+    </div>
+
+

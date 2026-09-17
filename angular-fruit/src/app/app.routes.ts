@@ -4,5 +4,6 @@ import { FruitsComponent } from './fruits-component/fruits-component';
 
 export const routes: Routes = [
     { path: 'animals', component: AnimalsComponent},
-    { path: 'fruits', component: FruitsComponent}
+    { path: 'fruits', component: FruitsComponent},
+    {path: '', redirectTo: '/animals', pathMatch: 'full'},
 ];
