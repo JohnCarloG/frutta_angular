@@ -1,0 +1,25 @@
+<header>
+  <nav class="container" aria-label="Navigazione principale">
+    <a class="brand" routerLink="/menu">🍔 Hamburgeria</a>
+    <div class="nav-links">
+      <a
+        routerLink="/menu"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Menu</a
+      >
+      <a
+        routerLink="/riepilogo"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        Il tuo ordine
+        <span class="badge" data-testid="numero-pezzi" aria-live="polite"
+          >{{ ordine.numeroPezzi() }}</span
+        >
+      </a>
+    </div>
+  </nav>
+</header>
+<main class="container"><router-outlet /></main>
+<footer class="container">Preparato al momento, scelto da te.</footer>

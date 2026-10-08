@@ -1,0 +1,224 @@
+@import "bootstrap/dist/css/bootstrap-reboot.min.css";
+:root {
+  font-family: system-ui, sans-serif;
+  color: #28231c;
+  background: #faf7f0;
+}
+body {
+  margin: 0;
+  background: #faf7f0;
+  color: #28231c;
+}
+a {
+  color: #9c3d17;
+  text-underline-offset: 0.25em;
+}
+.container {
+  width: min(960px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+header {
+  background: #28231c;
+  color: white;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.2rem;
+  flex-wrap: wrap;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+}
+.brand {
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+nav a.active {
+  background: #4b4235;
+}
+.badge {
+  display: inline-block;
+  background: #ffd166;
+  color: #28231c;
+  border-radius: 1rem;
+  padding: 0.1rem 0.55rem;
+  font-weight: 700;
+}
+.intro {
+  margin: 3rem 0 2rem;
+}
+.eyebrow {
+  color: #9c3d17;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+}
+h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.menu-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+.card {
+  background: white;
+  border: 1px solid #e5dfd4;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.price {
+  color: #675f53;
+}
+.selected {
+  display: inline-block;
+  margin-left: 0.7rem;
+  color: #215e36;
+  background: #e4f3e5;
+  border-radius: 1rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.85rem;
+}
+button,
+.button {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  background: #9c3d17;
+  color: white;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+button:hover,
+.button:hover {
+  background: #773011;
+  color: white;
+}
+button.secondary {
+  background: white;
+  color: #493f33;
+  border-color: #c4bbac;
+}
+button.danger {
+  background: #fff0ee;
+  color: #9b2a21;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #257cc0;
+  outline-offset: 4px;
+}
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  background: white;
+  border-radius: 1rem;
+  border: 1px dashed #c4bbac;
+}
+.empty-state > span {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e5dfd4;
+  border-radius: 1rem;
+  background: white;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5dfd4;
+}
+th {
+  background: #f1ece2;
+}
+tr:last-child td {
+  border-bottom: 0;
+}
+.actions {
+  white-space: nowrap;
+}
+.actions button + button {
+  margin-left: 0.5rem;
+}
+.highlight {
+  padding: 1rem;
+  background: #fff0cb;
+  border-radius: 0.6rem;
+  margin-top: 1.2rem;
+}
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+.order-total p {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.order-total strong {
+  margin-left: 1rem;
+  font-size: 1.7rem;
+}
+footer {
+  padding-block: 3rem;
+  color: #675f53;
+  font-size: 0.85rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+    align-items: flex-start;
+  }
+  .selected {
+    margin-left: 0;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  th,
+  td {
+    padding: 0.7rem;
+  }
+}

@@ -1,0 +1,27 @@
+<section class="intro">
+  <p class="eyebrow">Scegli il tuo prossimo morso</p>
+  <h1>Il nostro menu</h1>
+  <p>Un buon burger, qualcosa da sgranocchiare e la tua bibita preferita.</p>
+</section>
+<ul class="menu-list">
+  @for (p of piatti; track p.id) {
+  <li class="card">
+    <div>
+      <h2>{{ p.nome }}</h2>
+      <span class="price"
+        >{{ p.prezzo | currency:'EUR':'symbol':'1.2-2':'it' }}</span
+      >
+      @if (quantitaDi(p) > 0) {
+      <span class="selected">{{ quantitaDi(p) }} nell'ordine</span>
+      }
+    </div>
+    <button
+      type="button"
+      (click)="aggiungi(p)"
+      [attr.aria-label]="'Aggiungi ' + p.nome"
+    >
+      Aggiungi +
+    </button>
+  </li>
+  }
+</ul>

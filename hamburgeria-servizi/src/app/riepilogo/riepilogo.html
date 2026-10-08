@@ -1,0 +1,75 @@
+<section class="intro">
+  <p class="eyebrow">Tutto quello che hai scelto</p>
+  <h1>Il tuo ordine</h1>
+</section>
+@if (ordine.elenco().length === 0) {
+<div class="empty-state">
+  <span aria-hidden="true">🍽️</span>
+  <h2>Il tuo ordine è vuoto</h2>
+  <p>Cominciamo con qualcosa di buono?</p>
+  <a class="button" routerLink="/menu">Scegli dal menu</a>
+</div>
+} @else {
+<div class="table-wrap">
+  <table>
+    <caption class="sr-only">
+      Piatti nel tuo ordine
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Piatto</th>
+        <th scope="col">Quantità</th>
+        <th scope="col">Subtotale</th>
+        <th scope="col">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of ordine.elenco(); track r.piatto.id) {
+      <tr>
+        <td>{{ r.piatto.nome }}</td>
+        <td>{{ r.quantita }}</td>
+        <td>
+          {{ r.piatto.prezzo * r.quantita | currency:'EUR':'symbol':'1.2-2':'it'
+          }}
+        </td>
+        <td class="actions">
+          <button
+            type="button"
+            class="secondary"
+            (click)="ordine.togliUno(r.piatto.id)"
+            [attr.aria-label]="'Togli un pezzo di ' + r.piatto.nome"
+          >
+            −1
+          </button>
+          <button
+            type="button"
+            class="danger"
+            (click)="ordine.rimuovi(r.piatto.id)"
+            [attr.aria-label]="'Rimuovi ' + r.piatto.nome"
+          >
+            Togli
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (ordine.piattoPiuOrdinato(); as r) {
+<p class="highlight">
+  Il più ordinato: <strong>{{ r.piatto.nome }}</strong> · {{ r.quantita }} pezzi
+</p>
+}
+<div class="order-total">
+  <p>
+    Totale
+    <strong data-testid="totale"
+      >{{ ordine.totale() | currency:'EUR':'symbol':'1.2-2':'it' }}</strong
+    >
+  </p>
+  <button type="button" class="secondary" (click)="ordine.svuota()">
+    Svuota l'ordine
+  </button>
+</div>
+<a routerLink="/menu">← Torna al menu</a>
+}
