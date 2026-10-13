@@ -1,0 +1,8 @@
+<h1>Elenco degli studenti</h1>
+<div class="table-responsive"><table class="table table-striped table-hover">
+<thead><tr><th scope="col">Id</th><th scope="col">Nome</th><th scope="col">Classe</th><th scope="col">Media</th><th scope="col">Azioni</th></tr></thead>
+<tbody>@for (s of studenti(); track s.id) {
+<tr><td>{{ s.id }}</td><td>{{ s.nome }}</td><td>{{ s.classe }}</td>
+<td [class.text-success]="s.mediaVoti >= 6" [class.text-danger]="s.mediaVoti < 6">{{ s.mediaVoti }}</td>
+<td><button type="button" class="btn btn-sm btn-outline-danger" (click)="rimuovi(s.id)">Elimina</button></td></tr>
+}</tbody></table></div>
