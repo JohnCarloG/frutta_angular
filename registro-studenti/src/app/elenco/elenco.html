@@ -1,8 +1,18 @@
 <h1>Elenco degli studenti</h1>
+<div class="my-3">
+<label for="filtro" class="form-label">Filtra per classe</label>
+<input id="filtro" class="form-control filter-field" [(ngModel)]="filtroClasse" placeholder="es. 4B">
+</div>
+@if (filtrati().length === 0) {
+<div class="alert alert-warning" role="status">
+@if (filtroClasse().trim()) { Nessuno studente trovato per la classe {{ filtroClasse() }} } @else { Il registro è vuoto. }
+</div>
+} @else {
 <div class="table-responsive"><table class="table table-striped table-hover">
 <thead><tr><th scope="col">Id</th><th scope="col">Nome</th><th scope="col">Classe</th><th scope="col">Media</th><th scope="col">Azioni</th></tr></thead>
-<tbody>@for (s of studenti(); track s.id) {
+<tbody>@for (s of filtrati(); track s.id) {
 <tr><td>{{ s.id }}</td><td>{{ s.nome }}</td><td>{{ s.classe }}</td>
 <td [class.text-success]="s.mediaVoti >= 6" [class.text-danger]="s.mediaVoti < 6">{{ s.mediaVoti }}</td>
 <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="rimuovi(s.id)">Elimina</button></td></tr>
 }</tbody></table></div>
+}
