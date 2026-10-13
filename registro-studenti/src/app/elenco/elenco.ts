@@ -11,5 +11,9 @@ export class Elenco {
     const tutti = this.studentiService.studenti();
     return filtro === '' ? tutti : tutti.filter(s => s.classe.toUpperCase() === filtro);
   });
+  readonly mediaClasse = computed(() => {
+    const lista = this.filtrati();
+    return lista.length === 0 ? 0 : lista.reduce((somma, s) => somma + s.mediaVoti, 0) / lista.length;
+  });
   rimuovi(id: number): void { this.studentiService.rimuovi(id); }
 }
