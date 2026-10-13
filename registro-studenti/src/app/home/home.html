@@ -1,0 +1,9 @@
+<section class="p-4 p-md-5 mb-4 bg-white rounded-3 shadow-sm">
+  <p class="text-primary fw-semibold text-uppercase small">La tua classe, a colpo d'occhio</p>
+  <h1>Registro degli studenti</h1>
+  <p class="lead">Studenti registrati: <strong data-testid="numero">{{ studentiService.numero() }}</strong></p>
+  <div class="d-flex flex-wrap gap-2">
+    <a class="btn btn-primary" routerLink="/elenco">Vai all'elenco</a>
+    <a class="btn btn-outline-primary" routerLink="/inserimento">Nuovo studente</a>
+  </div>
+</section>

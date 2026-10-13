@@ -1,3 +1,4 @@
 import { Component } from '@angular/core';
-@Component({ selector: 'app-root', template: '<h1>Registro degli studenti</h1>' })
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+@Component({ selector: 'app-root', imports: [RouterLink, RouterLinkActive, RouterOutlet], templateUrl: './app.html' })
 export class App {}
