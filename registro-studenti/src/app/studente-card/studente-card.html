@@ -1,0 +1,6 @@
+<div class="card-body p-4">
+<h2 class="card-title h4">{{ studente().nome }}</h2>
+<p class="card-text">Classe <strong>{{ studente().classe }}</strong>, media
+<strong [class.text-success]="studente().mediaVoti >= 6" [class.text-danger]="studente().mediaVoti < 6">{{ studente().mediaVoti }}</strong></p>
+@if (azioni()) { <button type="button" class="btn btn-sm btn-outline-danger" (click)="rimuovi()">Rimuovi dal registro</button> }
+</div>

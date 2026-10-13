@@ -7,3 +7,7 @@
     <a class="btn btn-outline-primary" routerLink="/inserimento">Nuovo studente</a>
   </div>
 </section>
+@if (studentiService.migliore(); as m) {
+  <h2 class="h4 mb-3">La media più alta</h2>
+  <app-studente-card [studente]="m" [azioni]="false" />
+} @else { <p class="alert alert-info">Il registro è vuoto. Aggiungi il primo studente.</p> }
