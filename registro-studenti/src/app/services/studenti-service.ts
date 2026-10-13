@@ -36,6 +36,10 @@ export class StudentiService {
     return i === -1 ? undefined : lista[(i + 1) % lista.length];
   }
 
+  aggiorna(modificato: Studente): void {
+    this.dati.update(lista => lista.map(s => s.id === modificato.id ? { ...modificato } : s));
+  }
+
   private prossimoId(): number {
     return Math.max(0, ...this.dati().map(s => s.id)) + 1;
   }
