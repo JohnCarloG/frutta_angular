@@ -13,6 +13,6 @@
 <tbody>@for (s of filtrati(); track s.id) {
 <tr><td>{{ s.id }}</td><td>{{ s.nome }}</td><td>{{ s.classe }}</td>
 <td [class.text-success]="s.mediaVoti >= 6" [class.text-danger]="s.mediaVoti < 6">{{ s.mediaVoti }}</td>
-<td><button type="button" class="btn btn-sm btn-outline-danger" (click)="rimuovi(s.id)">Elimina</button></td></tr>
+<td class="text-end text-nowrap"><a class="btn btn-sm btn-outline-primary me-1" [routerLink]="['/elenco', s.id]">Dettaglio</a><button type="button" class="btn btn-sm btn-outline-danger" (click)="rimuovi(s.id)">Elimina</button></td></tr>
 }</tbody></table></div>
 }

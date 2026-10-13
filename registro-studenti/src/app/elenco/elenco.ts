@@ -1,7 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { StudentiService } from '../services/studenti-service';
-@Component({ selector: 'app-elenco', imports: [FormsModule], templateUrl: './elenco.html' })
+@Component({ selector: 'app-elenco', imports: [FormsModule, RouterLink], templateUrl: './elenco.html' })
 export class Elenco {
   private readonly studentiService = inject(StudentiService);
   readonly filtroClasse = signal('');
