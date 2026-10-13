@@ -11,6 +11,12 @@ export class Elenco {
     const tutti = this.studentiService.studenti();
     return filtro === '' ? tutti : tutti.filter(s => s.classe.toUpperCase() === filtro);
   });
+  readonly ordine = signal<'nome' | 'media'>('nome');
+  readonly visibili = computed(() => [...this.filtrati()].sort(
+    this.ordine() === 'nome'
+      ? (a, b) => a.nome.localeCompare(b.nome, 'it')
+      : (a, b) => b.mediaVoti - a.mediaVoti,
+  ));
   readonly mediaClasse = computed(() => {
     const lista = this.filtrati();
     return lista.length === 0 ? 0 : lista.reduce((somma, s) => somma + s.mediaVoti, 0) / lista.length;
