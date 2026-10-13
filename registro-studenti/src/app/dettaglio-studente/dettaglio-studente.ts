@@ -4,7 +4,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Studente } from '../modelli/studente';
 import { StudentiService } from '../services/studenti-service';
 import { StudenteCard } from '../studente-card/studente-card';
-@Component({ selector: 'app-dettaglio-studente', imports: [RouterLink, StudenteCard], templateUrl: './dettaglio-studente.html' })
+@Component({
+  selector: 'app-dettaglio-studente',
+  imports: [RouterLink, StudenteCard],
+  templateUrl: './dettaglio-studente.html',
+})
 export class DettaglioStudente implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -14,11 +18,14 @@ export class DettaglioStudente implements OnInit {
 
   ngOnInit(): void {
     // La sottoscrizione aggiorna la scheda anche se il router riusa il componente.
-    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(parametri => {
-      const trovato = this.studentiService.trova(Number(parametri.get('id')));
-      this.studente.set(trovato);
-      if (!trovato) void this.router.navigate(['/elenco'], { replaceUrl: true });
-    });
+    this.route.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((parametri) => {
+        const trovato = this.studentiService.trova(Number(parametri.get('id')));
+        this.studente.set(trovato);
+        if (!trovato)
+          void this.router.navigate(['/elenco'], { replaceUrl: true });
+      });
   }
 
   successivo(): void {

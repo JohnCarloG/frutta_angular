@@ -1,1 +1,51 @@
-body { background: #f4f7fb; color: #1c2d45; }
+body {
+  background: #f4f7fb;
+  color: #1c2d45;
+}
+h1 {
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.navbar {
+  box-shadow: 0 2px 12px #17345920;
+}
+.navbar .nav-link {
+  border-radius: 0.5rem;
+  padding-inline: 0.8rem;
+}
+.navbar .nav-link.active {
+  background: #ffffff26;
+}
+.filter-field {
+  max-width: 16rem;
+}
+.student-form {
+  max-width: 42rem;
+}
+app-studente-card {
+  display: block;
+  max-width: 42rem;
+}
+.table-responsive {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0.75rem;
+}
+table {
+  margin-bottom: 0 !important;
+}
+th,
+td {
+  padding: 0.9rem 1rem !important;
+  vertical-align: middle;
+}
+.text-success,
+.text-danger {
+  font-weight: 700;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #f6bf31;
+  outline-offset: 3px;
+}

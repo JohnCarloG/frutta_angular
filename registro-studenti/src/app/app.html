@@ -1,12 +1,42 @@
-<nav class="navbar navbar-expand bg-primary mb-4" data-bs-theme="dark" aria-label="Navigazione principale">
+<nav
+  class="navbar navbar-expand bg-primary mb-4"
+  data-bs-theme="dark"
+  aria-label="Navigazione principale"
+>
   <div class="container flex-wrap gap-2">
     <a class="navbar-brand fw-bold" routerLink="/home">Registro studenti</a>
     <ul class="navbar-nav flex-wrap">
-      <li class="nav-item"><a class="nav-link" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/elenco" routerLinkActive="active" ariaCurrentWhenActive="page">Elenco</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/inserimento" routerLinkActive="active" ariaCurrentWhenActive="page">Nuovo studente</a></li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/home"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/elenco"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Elenco</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/inserimento"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Nuovo studente</a
+        >
+      </li>
     </ul>
   </div>
 </nav>
 <main class="container pb-4"><router-outlet /></main>
-<footer class="container text-secondary py-4 border-top">Laboratorio Angular · Servizi e dependency injection</footer>
+<footer class="container text-secondary py-4 border-top">
+  Laboratorio Angular · Servizi e dependency injection
+</footer>
