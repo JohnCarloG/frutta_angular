@@ -1,6 +1,7 @@
 <h1>La foto astronomica del giorno</h1><p class="text-secondary">Titolo, spiegazione e contenuto multimediale da NASA APOD.</p>
 <div class="alert alert-info">La configurazione iniziale usa la chiave pubblica DEMO_KEY, con limiti ridotti. Puoi impostare la tua chiave personale nei file locali esclusi da Git.</div>
 <button type="button" class="btn btn-primary mb-3" (click)="carica()" [disabled]="loading()">Foto di oggi</button>
+<form class="mb-4" (ngSubmit)="mostra()"><label for="data" class="form-label">La foto di un altro giorno</label><div class="d-flex gap-2 flex-wrap"><input id="data" name="data" type="date" class="form-control compact-input" [(ngModel)]="data" required><button type="submit" class="btn btn-outline-primary" [disabled]="loading() || !data()">Mostra</button></div><p class="form-text">Una data futura viene inviata all'API per osservare la risposta di errore 400.</p></form>
 @if (loading()) { <div class="d-flex gap-2 align-items-center mb-3" role="status"><span class="spinner-border text-primary" aria-hidden="true"></span>Caricamento…</div> }
 @if (errore(); as e) { <div class="alert alert-danger" role="alert">{{ e }}</div> }
 @if (apod(); as a) {

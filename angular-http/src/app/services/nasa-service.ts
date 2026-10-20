@@ -10,4 +10,7 @@ export class NasaService {
   getApod(): Observable<Apod> {
     return this.http.get<Apod>(this.url, { params: { api_key: environment.nasaApiKey } });
   }
+  getApodDel(data: string): Observable<Apod> {
+    return this.http.get<Apod>(this.url, { params: { api_key: environment.nasaApiKey, date: data } });
+  }
 }
