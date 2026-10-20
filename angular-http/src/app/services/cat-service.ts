@@ -5,5 +5,7 @@ import { CatFact } from '../modelli/cat-fact';
 @Service()
 export class CatService {
   private readonly http = inject(HttpClient);
-  getRandomFact(): Observable<CatFact> { return this.http.get<CatFact>('https://catfact.ninja/fact'); }
+  getRandomFact(): Observable<CatFact> {
+    return this.http.get<CatFact>('https://catfact.ninja/fact');
+  }
 }

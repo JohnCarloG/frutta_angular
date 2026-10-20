@@ -1,4 +1,22 @@
-<h1>Fatti sui gatti</h1><p class="text-secondary">Una curiosità in inglese, direttamente da catfact.ninja.</p>
-@if (errore(); as e) { <div class="alert alert-danger" role="alert">{{ e }}</div> }
-@if (fatto(); as f) { <div class="card mb-3"><div class="card-body p-4"><p class="fs-5">{{ f.fact }}</p><small class="text-secondary">{{ f.length }} caratteri</small></div></div> }
-<button type="button" class="btn btn-primary" (click)="nuovoFatto()" [disabled]="loading()">{{ loading() ? 'Caricamento…' : 'Nuovo fatto' }}</button>
+<h1>Fatti sui gatti</h1>
+<p class="text-secondary">
+  Una curiosità in inglese, direttamente da catfact.ninja.
+</p>
+@if (errore(); as e) {
+<div class="alert alert-danger" role="alert">{{ e }}</div>
+} @if (fatto(); as f) {
+<div class="card mb-3">
+  <div class="card-body p-4">
+    <p class="fs-5">{{ f.fact }}</p>
+    <small class="text-secondary">{{ f.length }} caratteri</small>
+  </div>
+</div>
+}
+<button
+  type="button"
+  class="btn btn-primary"
+  (click)="nuovoFatto()"
+  [disabled]="loading()"
+>
+  {{ loading() ? 'Caricamento…' : 'Nuovo fatto' }}
+</button>

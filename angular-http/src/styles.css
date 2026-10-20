@@ -1,10 +1,39 @@
-body { background: #f5f7fb; color: #1d2c43; }
-.container { max-width: 1080px; }
-h1 { font-weight: 750; letter-spacing: -.035em; }
-.navbar .nav-link { border-radius: .5rem; padding-inline: .8rem; }
-.navbar .active { background: #ffffff20; }
-pre { overflow-x: auto; }
-.card-img-top { max-height: 650px; object-fit: contain; background: #101826; }
-.pokemon-image { width: 192px; height: 192px; image-rendering: pixelated; }
-.compact-input { max-width: 12rem; }
-button:focus-visible, a:focus-visible { outline: 3px solid #f7c948; outline-offset: 3px; }
+body {
+  background: #f5f7fb;
+  color: #1d2c43;
+}
+.container {
+  max-width: 1080px;
+}
+h1 {
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+.navbar .nav-link {
+  border-radius: 0.5rem;
+  padding-inline: 0.8rem;
+}
+.navbar .active {
+  background: #ffffff20;
+}
+pre {
+  overflow-x: auto;
+}
+.card-img-top {
+  max-height: 650px;
+  object-fit: contain;
+  background: #101826;
+}
+.pokemon-image {
+  width: 192px;
+  height: 192px;
+  image-rendering: pixelated;
+}
+.compact-input {
+  max-width: 12rem;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #f7c948;
+  outline-offset: 3px;
+}

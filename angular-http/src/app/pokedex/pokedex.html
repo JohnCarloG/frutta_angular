@@ -1,14 +1,65 @@
-<h1>Pokédex</h1><p class="text-secondary">Cerca un Pokémon per nome o numero.</p>
-<section class="mb-4" aria-labelledby="titolo-tipi"><h2 id="titolo-tipi" class="h5">Tipi di Pokémon</h2>
-@if (loadingTipi()) { <p role="status">Caricamento tipi…</p> }
-@if (erroreTipi(); as e) { <div class="alert alert-warning" role="alert">{{ e }} <button type="button" class="btn btn-sm btn-outline-secondary" (click)="caricaTipi()">Riprova tipi</button></div> }
-<div class="d-flex gap-2 flex-wrap">@for (t of tipi(); track t.name) { <span class="badge text-bg-secondary">{{ t.name }}</span> }</div>
+<h1>Pokédex</h1>
+<p class="text-secondary">Cerca un Pokémon per nome o numero.</p>
+<section class="mb-4" aria-labelledby="titolo-tipi">
+  <h2 id="titolo-tipi" class="h5">Tipi di Pokémon</h2>
+  @if (loadingTipi()) {
+  <p role="status">Caricamento tipi…</p>
+  } @if (erroreTipi(); as e) {
+  <div class="alert alert-warning" role="alert">
+    {{ e }}
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-secondary"
+      (click)="caricaTipi()"
+    >
+      Riprova tipi
+    </button>
+  </div>
+  }
+  <div class="d-flex gap-2 flex-wrap">
+    @for (t of tipi(); track t.name) {
+    <span class="badge text-bg-secondary">{{ t.name }}</span> }
+  </div>
 </section>
-<form class="mb-4" (ngSubmit)="cerca()"><label for="ricerca" class="form-label">Nome o numero</label><div class="input-group"><input id="ricerca" name="ricerca" class="form-control" [(ngModel)]="ricerca" placeholder="pikachu oppure 25" required><button type="submit" class="btn btn-primary" [disabled]="loading() || !ricerca().trim()">Cerca</button></div></form>
-@if (loading()) { <p role="status">Ricerca in corso…</p> }
-@if (errore(); as e) { <div class="alert alert-danger" role="alert">{{ e }}</div> }
-@if (pokemon(); as p) {
-<article class="card"><div class="card-body p-4"><h2 class="h4 text-capitalize">{{ p.name }} <span class="text-secondary">#{{ p.id }}</span></h2>
-@if (p.sprites.front_default; as immagine) { <img [src]="immagine" [alt]="p.name" class="pokemon-image"> } @else { <p>Immagine non disponibile.</p> }
-<dl class="row mb-0"><dt class="col-4">Altezza</dt><dd class="col-8">{{ p.height / 10 }} m</dd><dt class="col-4">Peso</dt><dd class="col-8">{{ p.weight / 10 }} kg</dd></dl></div></article>
+<form class="mb-4" (ngSubmit)="cerca()">
+  <label for="ricerca" class="form-label">Nome o numero</label>
+  <div class="input-group">
+    <input
+      id="ricerca"
+      name="ricerca"
+      class="form-control"
+      [(ngModel)]="ricerca"
+      placeholder="pikachu oppure 25"
+      required
+    /><button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="loading() || !ricerca().trim()"
+    >
+      Cerca
+    </button>
+  </div>
+</form>
+@if (loading()) {
+<p role="status">Ricerca in corso…</p>
+} @if (errore(); as e) {
+<div class="alert alert-danger" role="alert">{{ e }}</div>
+} @if (pokemon(); as p) {
+<article class="card">
+  <div class="card-body p-4">
+    <h2 class="h4 text-capitalize">
+      {{ p.name }} <span class="text-secondary">#{{ p.id }}</span>
+    </h2>
+    @if (p.sprites.front_default; as immagine) {
+    <img [src]="immagine" [alt]="p.name" class="pokemon-image" /> } @else {
+    <p>Immagine non disponibile.</p>
+    }
+    <dl class="row mb-0">
+      <dt class="col-4">Altezza</dt>
+      <dd class="col-8">{{ p.height / 10 }} m</dd>
+      <dt class="col-4">Peso</dt>
+      <dd class="col-8">{{ p.weight / 10 }} kg</dd>
+    </dl>
+  </div>
+</article>
 }

@@ -6,10 +6,18 @@ import { Post } from '../modelli/post';
 export class PostService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com/posts';
-  getPost(id: number): Observable<Post> { return this.http.get<Post>(`${this.baseUrl}/${id}`); }
-  getPosts(): Observable<Post[]> { return this.http.get<Post[]>(this.baseUrl); }
-  getPagina(pagina: number): Observable<Post[]> {
-    return this.http.get<Post[]>(this.baseUrl, { params: { _page: pagina, _limit: 10 } });
+  getPost(id: number): Observable<Post> {
+    return this.http.get<Post>(`${this.baseUrl}/${id}`);
   }
-  addPost(post: Omit<Post, 'id'>): Observable<Post> { return this.http.post<Post>(this.baseUrl, post); }
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.baseUrl);
+  }
+  getPagina(pagina: number): Observable<Post[]> {
+    return this.http.get<Post[]>(this.baseUrl, {
+      params: { _page: pagina, _limit: 10 },
+    });
+  }
+  addPost(post: Omit<Post, 'id'>): Observable<Post> {
+    return this.http.post<Post>(this.baseUrl, post);
+  }
 }

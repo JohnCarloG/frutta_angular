@@ -1,4 +1,7 @@
-export interface TipoPokemon { readonly name: string; readonly url: string; }
+export interface TipoPokemon {
+  readonly name: string;
+  readonly url: string;
+}
 export interface PaginaTipi {
   readonly count: number;
   readonly next: string | null;

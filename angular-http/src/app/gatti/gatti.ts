@@ -12,13 +12,22 @@ export class Gatti implements OnInit {
   readonly fatto = signal<CatFact | null>(null);
   readonly loading = signal(false);
   readonly errore = signal<string | null>(null);
-  ngOnInit(): void { this.nuovoFatto(); }
+  ngOnInit(): void {
+    this.nuovoFatto();
+  }
   nuovoFatto(): void {
     if (this.loading()) return;
-    this.loading.set(true); this.errore.set(null);
-    this.catService.getRandomFact().pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.loading.set(false))).subscribe({
-      next: dato => this.fatto.set(dato),
-      error: (err: HttpErrorResponse) => this.errore.set(erroreHttp(err)),
-    });
+    this.loading.set(true);
+    this.errore.set(null);
+    this.catService
+      .getRandomFact()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        finalize(() => this.loading.set(false)),
+      )
+      .subscribe({
+        next: (dato) => this.fatto.set(dato),
+        error: (err: HttpErrorResponse) => this.errore.set(erroreHttp(err)),
+      });
   }
 }
