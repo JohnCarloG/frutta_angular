@@ -6,7 +6,9 @@
     "start": "ng serve --port 4204",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prepare:env": "node scripts/prepare-environments.mjs",
+    "postinstall": "npm run prepare:env"
   },
   "private": true,
   "packageManager": "npm@11.19.0",
