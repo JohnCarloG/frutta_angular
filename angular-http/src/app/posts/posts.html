@@ -12,9 +12,16 @@
 @if (post(); as p) {
 <section class="mb-4"><h2 class="h5">Ultima risposta ricevuta (post n. {{ p.id }})</h2><pre class="bg-white border p-3 rounded">{{ p | json }}</pre></section>
 }
-@if (posts().length > 0) {
-<section><h2 class="h5" data-testid="titolo-lista">Tutti i post: {{ posts().length }}</h2>
+<section class="bg-white border rounded p-3 mb-4" aria-label="Paginazione">
+<div class="d-flex flex-wrap align-items-center gap-2">
+<button type="button" class="btn btn-outline-primary" [disabled]="loading()" (click)="caricaPagina(pagina())">Carica pagina</button>
+<button type="button" class="btn btn-outline-secondary" [disabled]="loading() || pagina() === 1" (click)="caricaPagina(pagina() - 1)">Precedente</button>
+<span>Pagina {{ pagina() }} di 10</span>
+<button type="button" class="btn btn-outline-secondary" [disabled]="loading() || pagina() === 10" (click)="caricaPagina(pagina() + 1)">Successiva</button>
+</div></section>
+@if (elencoCaricato()) {
+<section><h2 class="h5" data-testid="titolo-lista">{{ paginato() ? 'Post nella pagina ' + pagina() : 'Tutti i post' }}: {{ posts().length }}</h2>
 <div class="list-group">@for (p of posts(); track p.id) {
 <article class="list-group-item"><h3 class="h6">{{ p.id }}. {{ p.title }}</h3><p class="small text-secondary mb-0">{{ p.body }}</p></article>
-}</div></section>
+} @empty { <p class="list-group-item mb-0">Nessun post trovato.</p> }</div></section>
 }

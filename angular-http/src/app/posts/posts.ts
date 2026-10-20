@@ -12,6 +12,9 @@ export class Posts {
   private readonly destroyRef = inject(DestroyRef);
   readonly post = signal<Post | null>(null);
   readonly posts = signal<readonly Post[]>([]);
+  readonly pagina = signal(1);
+  readonly paginato = signal(false);
+  readonly elencoCaricato = signal(false);
   readonly loading = signal(false);
   readonly errore = signal<string | null>(null);
 
@@ -28,7 +31,15 @@ export class Posts {
   caricaTutti(): void {
     if (!this.inizia()) return;
     this.postService.getPosts().pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.loading.set(false))).subscribe({
-      next: dati => this.posts.set(dati),
+      next: dati => { this.posts.set(dati); this.paginato.set(false); this.elencoCaricato.set(true); },
+      error: (err: HttpErrorResponse) => this.gestisciErrore(err),
+    });
+  }
+
+  caricaPagina(pagina: number): void {
+    if (!Number.isInteger(pagina) || pagina < 1 || pagina > 10 || !this.inizia()) return;
+    this.postService.getPagina(pagina).pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.loading.set(false))).subscribe({
+      next: dati => { this.posts.set(dati); this.pagina.set(pagina); this.paginato.set(true); this.elencoCaricato.set(true); },
       error: (err: HttpErrorResponse) => this.gestisciErrore(err),
     });
   }
