@@ -1,0 +1,12 @@
+<h1>La foto astronomica del giorno</h1><p class="text-secondary">Titolo, spiegazione e contenuto multimediale da NASA APOD.</p>
+<div class="alert alert-info">La configurazione iniziale usa la chiave pubblica DEMO_KEY, con limiti ridotti. Puoi impostare la tua chiave personale nei file locali esclusi da Git.</div>
+<button type="button" class="btn btn-primary mb-3" (click)="carica()" [disabled]="loading()">Foto di oggi</button>
+@if (loading()) { <div class="d-flex gap-2 align-items-center mb-3" role="status"><span class="spinner-border text-primary" aria-hidden="true"></span>Caricamento…</div> }
+@if (errore(); as e) { <div class="alert alert-danger" role="alert">{{ e }}</div> }
+@if (apod(); as a) {
+<article class="card">
+@if (a.media_type === 'image') { <img [src]="a.url" [alt]="a.title" class="card-img-top"> }
+@else { <div class="card-body"><a [href]="a.url" target="_blank" rel="noopener noreferrer">Oggi il contenuto non è un'immagine: aprilo in una nuova scheda</a></div> }
+<div class="card-body p-4"><h2 class="h4">{{ a.title }}</h2><p class="text-secondary">{{ a.date }} @if (a.copyright) { <span>· © {{ a.copyright }}</span> }</p><p>{{ a.explanation }}</p></div>
+</article>
+}
