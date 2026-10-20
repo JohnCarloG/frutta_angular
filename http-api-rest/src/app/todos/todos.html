@@ -1,0 +1,147 @@
+<section class="mb-4">
+  <p class="text-primary text-uppercase small fw-semibold">
+    GET · POST · DELETE
+  </p>
+  <h2 class="display-6 fw-bold">Cose da fare</h2>
+  <p class="text-secondary">
+    Scegli un utente, leggi le sue attività e prova a inviarne o eliminarne una.
+  </p>
+  <div class="alert alert-info mb-0">
+    <strong>API di prova:</strong> POST e DELETE sono simulate. La POST
+    restituisce un oggetto ma non lo aggiunge all'elenco; ricaricando ritroverai
+    anche le attività eliminate.
+  </div>
+</section>
+<section
+  class="bg-white rounded-3 border p-3 p-md-4 mb-4"
+  aria-labelledby="titolo-elenco"
+  [attr.aria-busy]="loading()"
+>
+  <div
+    class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3"
+  >
+    <h3 id="titolo-elenco" class="h5 mb-0">
+      Attività dell'utente {{ utente() }}
+    </h3>
+    <div class="btn-group" role="group" aria-label="Seleziona utente">
+      @for (id of utenti; track id) {
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        [class.active]="utente() === id"
+        [attr.aria-pressed]="utente() === id"
+        [disabled]="operazioneInCorso()"
+        (click)="carica(id)"
+      >
+        Utente {{ id }}
+      </button>
+      }
+    </div>
+  </div>
+  @if (loading()) {
+  <div class="d-flex gap-2 align-items-center py-4" role="status">
+    <span class="spinner-border text-primary" aria-hidden="true"></span
+    >Caricamento attività…
+  </div>
+  } @else if (errore(); as messaggio) {
+  <div class="alert alert-danger" role="alert">{{ messaggio }}</div>
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="carica(utente())"
+  >
+    Riprova
+  </button>
+  } @else {
+  <p class="text-secondary" data-testid="conteggio">
+    Completate: <strong>{{ completate() }}</strong> su {{ todos().length }}
+  </p>
+  <ul class="list-group">
+    @for (t of todos(); track t.id) {
+    <li
+      class="list-group-item d-flex align-items-center justify-content-between gap-3"
+    >
+      <div>
+        <span>{{ t.title }}</span>@if (t.completed) {
+        <span class="badge text-bg-success ms-2">fatto</span> }
+      </div>
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-danger"
+        [disabled]="eliminando().has(t.id) || invio()"
+        [attr.aria-label]="'Elimina ' + t.title"
+        (click)="elimina(t)"
+      >
+        {{ eliminando().has(t.id) ? 'Eliminazione…' : 'Elimina' }}
+      </button>
+    </li>
+    } @empty {
+    <li class="list-group-item text-secondary">
+      Nessuna attività per questo utente.
+    </li>
+    }
+  </ul>
+  } @if (erroreEliminazione(); as messaggio) {
+  <div class="alert alert-danger mt-3 mb-0" role="alert">{{ messaggio }}</div>
+  } @if (messaggioEliminazione(); as messaggio) {
+  <p class="text-success mt-3 mb-0" role="status">{{ messaggio }}</p>
+  }
+</section>
+<section
+  class="bg-white rounded-3 border p-3 p-md-4 mb-4"
+  aria-labelledby="titolo-nuova"
+>
+  <h3 id="titolo-nuova" class="h5">Nuova attività</h3>
+  <form (ngSubmit)="aggiungi()">
+    <label for="titolo" class="form-label"
+      >Titolo per l'utente {{ utente() }}</label
+    >
+    <div class="input-group">
+      <input
+        id="titolo"
+        name="titolo"
+        class="form-control"
+        [(ngModel)]="titolo"
+        required
+        placeholder="es. Studiare HTTP"
+        [disabled]="invio()"
+      />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!titolo().trim() || loading() || operazioneInCorso()"
+      >
+        {{ invio() ? 'Invio…' : 'Invia' }}
+      </button>
+    </div>
+  </form>
+  @if (erroreInvio(); as messaggio) {
+  <div class="alert alert-danger mt-3" role="alert">{{ messaggio }}</div>
+  } @if (creato(); as c) {
+  <div class="mt-4" role="status">
+    <h4 class="h6">Risposta del server alla POST</h4>
+    <pre class="bg-light rounded p-3 mb-0">{{ c | json }}</pre>
+  </div>
+  }
+</section>
+<section
+  class="bg-white rounded-3 border p-3 p-md-4"
+  aria-labelledby="titolo-404"
+>
+  <h3 id="titolo-404" class="h5">Prova tu: una risorsa inesistente</h3>
+  <p class="text-secondary">
+    <code>GET /todos/999</code>: osserva metodo, risposta e codice di stato
+    nella scheda Network del browser.
+  </p>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    [disabled]="provaInCorso()"
+    (click)="prova404()"
+  >
+    {{ provaInCorso() ? 'Verifica…' : 'Verifica HTTP 404' }}
+  </button>
+  @if (risultatoProva(); as risultato) {
+  <p class="mt-3 mb-0" role="status">{{ risultato }}</p>
+  }
+</section>

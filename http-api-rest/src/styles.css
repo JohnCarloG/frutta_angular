@@ -1,0 +1,21 @@
+body {
+  background: #f4f7fb;
+  color: #1b2b43;
+}
+.container {
+  max-width: 960px;
+}
+h2 {
+  letter-spacing: -0.04em;
+}
+.list-group-item {
+  padding-block: 1rem;
+}
+pre {
+  overflow-x: auto;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f7c948;
+  outline-offset: 2px;
+}
