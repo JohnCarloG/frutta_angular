@@ -33,6 +33,15 @@ export class Posts {
     });
   }
 
+  invia(): void {
+    if (!this.inizia()) return;
+    const nuovo = { userId: 1, title: 'Primo post da Angular', body: 'Inviato con HttpClient' };
+    this.postService.addPost(nuovo).pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.loading.set(false))).subscribe({
+      next: risposta => this.post.set(risposta),
+      error: (err: HttpErrorResponse) => this.gestisciErrore(err),
+    });
+  }
+
   private inizia(): boolean {
     if (this.loading()) return false;
     this.loading.set(true); this.errore.set(null); return true;

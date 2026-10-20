@@ -1,9 +1,11 @@
 <h1>Post da JSONPlaceholder</h1>
+<div class="alert alert-info">JSONPlaceholder simula le scritture: la POST restituisce id 101 ma non salva nulla.</div>
 <p class="text-secondary">Leggi un post o osserva la risposta JSON del server.</p>
 <div class="d-flex flex-wrap align-items-end gap-2 mb-4">
 <div><label for="numero" class="form-label">Numero del post</label><input #numero id="numero" type="number" class="form-control compact-input" value="1" min="1" step="1"></div>
 <button type="button" class="btn btn-primary" [disabled]="loading()" (click)="caricaUno(numero.value)">Carica un post</button>
 <button type="button" class="btn btn-outline-primary" [disabled]="loading()" (click)="caricaTutti()">Carica tutti</button>
+<button type="button" class="btn btn-success" [disabled]="loading()" (click)="invia()">Invia un post</button>
 </div>
 @if (loading()) { <div class="d-flex gap-2 align-items-center mb-3" role="status"><span class="spinner-border text-primary" aria-hidden="true"></span>Caricamento…</div> }
 @if (errore(); as e) { <div class="alert alert-danger" role="alert">{{ e }}</div> }
