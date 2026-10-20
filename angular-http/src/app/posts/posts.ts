@@ -25,6 +25,14 @@ export class Posts {
     });
   }
 
+  caricaTutti(): void {
+    if (!this.inizia()) return;
+    this.postService.getPosts().pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.loading.set(false))).subscribe({
+      next: dati => this.posts.set(dati),
+      error: (err: HttpErrorResponse) => this.gestisciErrore(err),
+    });
+  }
+
   private inizia(): boolean {
     if (this.loading()) return false;
     this.loading.set(true); this.errore.set(null); return true;
